@@ -14,9 +14,9 @@
     return self;
 }
 
-- (void)didRegisterForRemoteNotificationsWithDeviceToken:(id)deviceToken {
-    NSString *tokenRepresentation = [deviceToken isKindOfClass:[NSString class]] ? deviceToken : [RNNotificationUtils deviceTokenToString:deviceToken];
-    [RNEventEmitter sendEvent:RNRegistered body:@{@"deviceToken": tokenRepresentation}];
+- (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *) deviceToken {
+    
+    [RNEventEmitter sendEvent:RNRegistered body:@{@"deviceToken": [RNNotificationUtils deviceTokenToString:deviceToken]}];
 }
 
 - (void)didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
